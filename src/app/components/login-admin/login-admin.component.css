@@ -1,0 +1,20 @@
+[nz-button] {
+    width: 100%;
+}
+
+[nz-input] {
+    margin-bottom: 15px;
+}
+
+.title {
+    text-align: center;
+}
+
+.wrapper {
+    width: 30%;
+    margin: 100px auto;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    border-radius: 10px;
+}
