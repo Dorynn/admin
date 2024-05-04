@@ -29,6 +29,7 @@ export class LoginAdminComponent {
     this.apiService.loginAdmin(request).subscribe({
       next: (res1: any) => {
         localStorage.setItem("token", res1.data);
+        this.dataService.changeToken(res1.data);
         this.apiService.getAdminInf(res1.data).subscribe({
           next: (res: any) => {
             this.dataService.setAdminInf(res.data);
@@ -41,5 +42,8 @@ export class LoginAdminComponent {
     })
   }
 
+  goToRegister(){
+    this.router.navigateByUrl("/register")
+  }
   
 }

@@ -17,6 +17,11 @@ export class TransactionManagementComponent implements OnInit {
   landName: string = '';
   status: number = 0;
   confirmModal?: NzModalRef;
+  searchParam: any = {
+    status: '',
+    searchCode: '',
+    search: ''
+  }
 
   constructor(
     private apiService: ApiService,
@@ -26,6 +31,7 @@ export class TransactionManagementComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.getTransactionList({})
   }
 
@@ -36,6 +42,9 @@ export class TransactionManagementComponent implements OnInit {
         this.total = res.totalRecords;
         this.currentPage = res.currentPage;
         this.currentSize = res.currentSize;
+      },
+      error: (err: any) => {
+        this.transactionList = [];
       }
     })
   }
@@ -56,18 +65,6 @@ export class TransactionManagementComponent implements OnInit {
       pageSize: 10
     }
     this.getTransactionList(param)
-  }
-
-  handleSearchByStatus() {
-    if (this.status == null) {
-      this.getTransactionList({});
-    } else {
-      this.getTransactionList({ status: this.status })
-    }
-  }
-
-  handleSearch() {
-    this.getTransactionList({ searchByLandName: this.landName })
   }
 
   updateTransactionStatus(id: string, status: string){
@@ -105,7 +102,16 @@ export class TransactionManagementComponent implements OnInit {
       }
         
     });
+  }
 
+  handleFilter(){
+    this.getTransactionList(this.searchParam)
+  }
 
+  handleClearFilter(){
+    this.getTransactionList({});
+    this.searchParam.search = '';
+    this.searchParam.searchName = '';
+    this.searchParam.status = '';
   }
 }

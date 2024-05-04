@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginAdminComponent } from './components/login-admin/login-admin.component';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { authGuard, AuthGuard, childGuard } from './guards/auth.guard';
 import { AdminComponent } from './modules/main/admin/admin.component';
 import { MainComponent } from './modules/main/main.component';
@@ -18,39 +19,22 @@ import { UserListComponent } from './pages/admin/user-list/user-list.component';
 import { ViewTransactionComponent } from './pages/admin/view-transaction/view-transaction.component';
 
 const routes: Routes = [
-  // { path: '', pathMatch: 'full', redirectTo: '' },
-  // {
-  //   path: '',
-  //   component: MainComponent,
-  //   // canActivate: [AuthGuard],
-
-  // },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
   {
     path: 'login',
     component: LoginAdminComponent
   },
   {
+    path: 'register',
+    component: RegisterAdminComponent
+  },
+  {
     path: '',
     component: MainComponent,
-    // canActivate: [authGuard],
-    // canActivateChild: [childGuard],
     children: [
       {
         path: '',
         children: [
-          // {
-          //   path: 'homepage',
-          //   component: HomepageComponent
-          // },
-          // {
-          //   path: 'project-detail/:id',
-          //   component: ProjectDetailComponent
-          // },
-          // {
-          //   path: 'project-detail/:id/area-detail/:area-id',
-          //   component: AreaDetailComponent
-          // },
-          
           {
             path: 'add-project',
             component: AddProjectComponent

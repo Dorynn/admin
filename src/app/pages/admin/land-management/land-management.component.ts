@@ -15,8 +15,9 @@ export class LandManagementComponent implements OnInit {
   total: number = 0;
   currentPage: number = 0;
   pageSize: number = 10;
+  allAreas: any =[];
   requestParams: any = {
-    name: '',
+    searchName: '',
     projectId: '',
     areaId: ''
   };
@@ -30,6 +31,7 @@ export class LandManagementComponent implements OnInit {
   ngOnInit(): void {
     this.getLandList({});
     this.getProjectList();
+    this.getAreaList();
   }
 
   getProjectList(){
@@ -43,14 +45,18 @@ export class LandManagementComponent implements OnInit {
   getAreaByProjectId(){
     this.apiService.getProjectById(this.requestParams.projectId).subscribe({
       next: (res: any) => {
-        this.areaList = res.data
+        this.areaList = res.data.areas
       }
     })
   }
 
-  // getAreaList(){
-  //   this.apiService.getAreaList()
-  // }
+  getAreaList(){
+    this.apiService.getAllArea().subscribe({
+      next: (res: any) => {
+        this.areaList = res.data
+      }
+    })
+  }
 
   getLandList(request: any){
     this.apiService.getLandList(request).subscribe({
@@ -59,6 +65,9 @@ export class LandManagementComponent implements OnInit {
         this.total = res.totalRecords;
         this.currentPage = res.currentPage;
         this.pageSize = res.currentSize;
+      },
+      error: (err: any) => {
+        this.landList = [];
       }
     })
 
@@ -72,6 +81,14 @@ export class LandManagementComponent implements OnInit {
     this.router.navigateByUrl(`/edit-land/${id}`)
   }
 
+  getAreaById(){
+    this.apiService.getAreaById(this.requestParams.areaId).subscribe({
+      next: (res: any) => {
+        this.requestParams.projectId = res.data.projectId
+      }
+    })
+  }
+
   handleChangePage(e:any){
     let param = {
       pageIndex: e-1,
@@ -80,22 +97,26 @@ export class LandManagementComponent implements OnInit {
     this.getLandList(param)
   }
 
-  handleSearch(){
-    this.getLandList({searchName: this.requestParams.name})
-  }
 
   searchByProject(){
-    if(this.requestParams.projectId == null){
-      this.getLandList({});
-    }
-    this.getLandList({projectId: this.requestParams.projectId})
+    this.getAreaByProjectId();
   }
 
   searchByArea(){
     if(this.requestParams.areaId == null){
       this.getLandList({})
     }
-    this.getAreaByProjectId();
-    this.getLandList({areaId: this.requestParams.areaId});
+    this.getAreaById();
+  }
+
+  handleFilter(){
+    this.getLandList(this.requestParams)
+  }
+
+  handleClearFilter(){
+    this.requestParams.searchName = '';
+    this.requestParams.projectId= '';
+    this.requestParams.areaId ='';
+    this.getLandList({});
   }
 }

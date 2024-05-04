@@ -43,4 +43,9 @@ export class UserListComponent implements OnInit {
   handleSearch(){
     this.getUserList({search: this.search});
   }
+
+  handleClearSearch(){
+    this.search = ''
+    this.getUserList({})
+  }
 }

@@ -39,6 +39,9 @@ export class AddLandComponent implements OnInit {
   direction: string = '';
   isMoreInf: boolean = false;
   landFile!: NzUploadFile[];
+  isImportFile: boolean = false;
+  fileLandImage!: NzUploadFile[];
+  landImage: any = [];
 
   constructor(
     private msg: NzMessageService,
@@ -51,6 +54,7 @@ export class AddLandComponent implements OnInit {
   }
 
   handlePreview = async (file: NzUploadFile): Promise<void> => {
+
     if (!file.url && !file['preview']) {
       file['preview'] = await getBase64(file.originFileObj!);
     }
@@ -59,6 +63,14 @@ export class AddLandComponent implements OnInit {
   }
 
   handleChange(info: { file: NzUploadFile }): void {
+    // console.log(this.fileLandImage);
+    // this.fileLandImage.map((e: any) => {
+    //   this.landImage.push(e.originFileObj!);
+    // })
+
+    console.log(this.fileLandImage);
+
+
     switch (info.file.status) {
       case 'uploading':
         this.loading = true;
@@ -107,6 +119,16 @@ export class AddLandComponent implements OnInit {
 
   handleAddLand() {
     this.dataService.changeStatusLoadingAdmin(true);
+    console.log(this.fileLandImage);
+
+    let fileLength = this.fileLandImage.length;
+    console.log(fileLength);
+    for (let i = 0; i < fileLength; i++) {
+      this.landImage[i] = this.fileLandImage[i].originFileObj
+    }
+    console.log(this.landImage);
+
+
     let formData = new FormData();
     formData.append("name", this.name);
     formData.append("description", this.description);
@@ -121,6 +143,48 @@ export class AddLandComponent implements OnInit {
     formData.append("direction", this.direction)
     this.apiService.createLand(formData).subscribe({
       next: (res: any) => {
+        for(let i = 0; i < fileLength; i++){
+          this.importMultipleImage(res.data, this.landImage[i]);
+        }
+        console.log('oke');
+
+      },
+      error: (err: any) => {
+        this.dataService.changeStatusLoadingAdmin(false);
+        this.msg.error(`Tạo mới khu đất thất bại, lỗi ${err}`)
+      }
+    })
+  }
+
+  importFile(info: NzUploadChangeParam): void {
+    this.isImportFile = true;
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      this.msg.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+
+    }
+  }
+
+  handleUploadLandFile() {
+    let formData = new FormData()
+    formData.append("file", this.landFile[0].originFileObj!)
+    this.apiService.importFile(formData).subscribe({
+      next: (res: any) => {
+        this.msg.success("Import file success");
+        this.isImportFile = false
+      }
+    })
+  }
+
+  importMultipleImage(landId: string, landImage: File) {
+    let formData = new FormData();
+    formData.append("landId", landId)
+    formData.append("files", landImage)
+    this.apiService.importMultiImage(formData).subscribe({
+      next: (res: any) => {
         this.msg.success('Thêm mới khu đất thành công!')
         this.name = '';
         this.description = '';
@@ -133,38 +197,15 @@ export class AddLandComponent implements OnInit {
         this.areaId = '';
         this.isProjectChange = false;
         this.projectId = '';
-        this.typeOfApartment="";
+        this.typeOfApartment = "";
         this.direction = "";
+        this.fileLandImage = [];
         this.dataService.changeStatusLoadingAdmin(false);
-      },
-      error:(err: any) => {
-        this.dataService.changeStatusLoadingAdmin(false);
-        this.msg.error(`Tạo mới khu đất thất bại, lỗi ${err}`)
       }
     })
   }
 
-  importFile(info: NzUploadChangeParam): void {
 
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === 'done') {
-      this.msg.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-
-    }
-  }
-
-  handleUploadLandFile(){
-    let formData = new FormData()
-    formData.append("file", this.landFile[0].originFileObj!)
-    this.apiService.importFile(formData).subscribe({
-      next: (res: any) => {
-        this.msg.success("Import file success")
-      }
-    })
-  }
 }
 
 

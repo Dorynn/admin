@@ -16,6 +16,7 @@ export class DataService {
   private statusProjectInformationModal = new BehaviorSubject(false);
   private roleUser = new BehaviorSubject('USER');
   private adminInf = new BehaviorSubject({});
+  private tokenString = new BehaviorSubject('');
   isVisibleLoginModal = this.statusLoginModal.asObservable();
   isVisibleRegisterModal = this.statusRegisterModal.asObservable();
   isVisibleRegisterModalStep2 = this.statusRegisterModalStep2.asObservable()
@@ -27,8 +28,15 @@ export class DataService {
   isLoadingUser = this.statusLoadingUser.asObservable();
   admin = this.adminInf.asObservable();
   isProjectInformationModal = this.statusProjectInformationModal.asObservable();
+  token = this.tokenString.asObservable();
 
-  constructor() { }
+
+  constructor( ) {
+    let token = localStorage.getItem("token")
+    if(token){
+      this.changeToken(token);
+    }
+   }
 
   changeStatusLoginModal (status: boolean) {
     this.statusLoginModal.next(status);
@@ -72,6 +80,10 @@ export class DataService {
 
   changeStatusProjectInformationModal(status: boolean) {
     this.statusProjectInformationModal.next(status);
+  }
+
+  changeToken(token: string) {
+    this.tokenString.next(token);
   }
 
 }

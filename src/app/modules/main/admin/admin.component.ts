@@ -32,8 +32,8 @@ export class AdminComponent implements OnInit {
   }
 
   scheduleFunctionExecution(): void {
-    const delayInMilliseconds = 60*1000*30 ; 
-    console.log('token');
+    const delayInMilliseconds = 60*1000*40; 
+    console.log('token in admin');
     
     setInterval(() => {
       this.refreshToken(); 
@@ -47,6 +47,7 @@ export class AdminComponent implements OnInit {
       this.apiService.refreshToken({token: token}).subscribe({
         next: (res: any) => {
           localStorage.setItem("token", res.data)
+          this.dataService.changeToken(res.data);
         }
       })
     }

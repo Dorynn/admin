@@ -1,7 +1,8 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ObservableLike } from 'rxjs';
 import { ENV } from '../../environments/environment';
+import { DataService } from './data.service';
 
 const baseUrl = 'http://localhost:8686/api/v1';
 const baseUrlAdmin = 'http://localhost:8686';
@@ -14,10 +15,10 @@ type NewType = Observable<any>;
 export class ApiService {
   token:string |null = ''
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private dataService: DataService
   ) { 
-    this.token = localStorage.getItem("token");
-    console.log(this.token)
+    this.dataService.token.subscribe(token=> this.token = token);
   }
 
   getProjectList(request: any):Observable<any>{
@@ -174,5 +175,13 @@ export class ApiService {
 
   importFile(formData: any):Observable<any>{
     return this.http.post(`${baseUrl}/lands/create_multi_lands_from_excel_file`, formData)
+  }
+
+  importMultiImage(formData: any):Observable<any>{
+    return this.http.post(`${baseUrl}/images/import_multi_image_for_land`, formData)
+  }
+
+  getAllArea():Observable<any> {
+    return this.http.get(`${baseUrl}/areas/noPagination`)
   }
 }

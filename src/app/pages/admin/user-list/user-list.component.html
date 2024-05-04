@@ -1,14 +1,16 @@
 <h2>Danh sách người dùng</h2>
 
-<div nz-row [nzJustify]="'space-between'">
-    <div class="search-box">
+<div nz-row>
+    <div class="search-box" nz-col [nzSpan]="6">
         <nz-input-group nzSearch [nzAddOnBefore]="prefixButton">
-            <input [(ngModel)]="search" type="text" nz-input placeholder="" (keyup.enter)="handleSearch()">
+            <input [(ngModel)]="search" type="text" nz-input placeholder="Tên người dùng, số điện thoại hoặc email">
         </nz-input-group>
         <ng-template #prefixButton>
             Tìm kiếm
         </ng-template>
     </div>
+    <button nz-button nz-col [nzSpan]="1" [nzOffset]="1" (click)="handleSearch()">Lọc</button>
+    <button nz-button nz-col [nzSpan]="2" [nzOffset]="1" (click)="handleClearSearch()">Xóa lọc</button>
 </div>
 
 <div class="table-wrapper">

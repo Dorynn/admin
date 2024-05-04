@@ -29,6 +29,9 @@ export class ProjectManagerComponent implements OnInit {
         this.total = res.totalRecords;
         this.currentPage = res.currentPage
         this.projectList = res.data;
+      },
+      error: (err: any) => {
+        this.projectList = []
       }
     })
   }
@@ -51,5 +54,10 @@ export class ProjectManagerComponent implements OnInit {
 
   handleSearch(){
     this.getProjectList({nameProject: this.searchProjectName})
+  }
+
+  handleClearSearch(){
+    this.searchProjectName = ''
+    this.getProjectList({});
   }
 }

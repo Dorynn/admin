@@ -39,6 +39,10 @@ export class AreaManagementComponent implements OnInit {
         this.currentPage = res.currentPage;
         this.pageSize = res.currentSize;
         this.loading = false;
+      },
+      error: (err: any) => {
+        this.loading = false;
+        this.areaList = [];
       }
     })
   }
@@ -72,5 +76,10 @@ export class AreaManagementComponent implements OnInit {
       this.filterParams.projectId = '';
     }
     this.getAreaList(this.filterParams);
+  }
+
+  handleClearSearch(){
+    this.searchAreaName = ''
+    this.getAreaList({})
   }
 }

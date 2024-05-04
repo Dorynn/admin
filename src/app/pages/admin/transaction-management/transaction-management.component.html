@@ -3,23 +3,34 @@
 <div nz-row>
     <div class="search-box" nz-col [nzSpan]="6">
         <nz-input-group nzSearch [nzAddOnBefore]="prefixButton">
-            <input [(ngModel)]="landName" type="text" nz-input placeholder="" (keyup.enter)="handleSearch()">
+            <input [(ngModel)]="searchParam.search" type="text" nz-input placeholder="Tìm kiếm chung">
         </nz-input-group>
         <ng-template #prefixButton>
             Tìm kiếm
         </ng-template>
     </div>
 
-    <div nz-col [nzSpan]="8" [nzOffset]="2">
+    <div class="search-box" nz-col [nzSpan]="6" [nzOffset]="1">
+        <nz-input-group nzSearch [nzAddOnBefore]="prefixButton">
+            <input [(ngModel)]="searchParam.searchCode" type="text" nz-input placeholder="Mã giao dịch">
+        </nz-input-group>
+        <ng-template #prefixButton>
+            Mã giao dịch
+        </ng-template>
+    </div>
+
+    <div nz-col [nzSpan]="6" [nzOffset]="1">
         <div nz-row>
             <span nz-col [nzSpan]="6" class="prefix-select">Trạng thái</span>
-            <nz-select [(ngModel)]="status" (ngModelChange)="handleSearchByStatus()" nz-col [nzSpan]="18" nzAllowClear="true">
+            <nz-select [(ngModel)]="this.searchParam.status" nz-col [nzSpan]="14" nzAllowClear="true" [nzPlaceHolder]="'Trạng thái'">
                 <nz-option nzValue="0" nzLabel="Chờ xác nhận"></nz-option>
                 <nz-option nzValue="1" nzLabel="Thanh toán thành công"></nz-option>
                 <nz-option nzValue="2" nzLabel="Thanh toán thất bại"></nz-option>
             </nz-select>
         </div>
     </div>
+    <button nz-button nz-col [nzSpan]="1" (click)="handleFilter()">Lọc</button>
+    <button nz-button nz-col [nzSpan]="2" [nzOffset]="1" (click)="handleClearFilter()">Bỏ lọc</button>
 </div>
 
 <div class="table-wrapper">

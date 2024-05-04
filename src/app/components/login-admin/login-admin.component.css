@@ -1,5 +1,6 @@
 [nz-button] {
     width: 100%;
+    margin-bottom: 15px;
 }
 
 [nz-input] {
@@ -17,4 +18,30 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 20px;
     border-radius: 10px;
+}
+
+.link-text {
+    color: orange;
+    cursor: pointer;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}
+
+.background-brown {
+    background-color: #DCA447;
+    color: #fff;
+}
+
+button.background-brown:hover {
+    background-color: #df8f0d;
+    color: #fff;
+    border-color: #df8f0d;
+}
+
+button.background-brown:active {
+    background-color: #df8f0d;
+    color: #fff;
+    border-color: #df8f0d;
 }

@@ -1,3 +1,4 @@
+import { TranslationWidth } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -40,6 +41,9 @@ export class EditLandComponent {
   typeOfApartment: string = "";
   projectType: string = "";
   isExistThumbnail: boolean = false;
+  fileLandImage: NzUploadFile[] = [];
+  landImage: any = [];
+  isExistLandImages: boolean = false;
 
   constructor(
     private msg: NzMessageService,
@@ -129,8 +133,27 @@ export class EditLandComponent {
           })
         }
 
+        if (res.data.images.length >= 0) {
+          this.isExistLandImages = true;
+          let images = res.data.images
+          console.log(images);
+          images.map((item:any) => {
+            this.fileLandImage.push({
+              url: item.url,
+              uid: item.imageId,
+              name: item.description,
+              status: 'done'
+            });
+          })
+        }
+        console.log(this.fileLandImage);
+        
         if (!this.thumbnail) {
           this.thumbnail = [];
+        }
+
+        if(!this.fileLandImage){
+          this.fileLandImage = []
         }
         this.getAreaByProjectId();
         this.getProjectById();

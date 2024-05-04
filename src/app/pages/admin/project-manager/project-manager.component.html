@@ -1,15 +1,17 @@
 <h2>Quản lý dự án</h2>
 
-<div nz-row [nzJustify]="'space-between'">
-    <div class="search-box">
+<div nz-row>
+    <div class="search-box" nz-col [nzSpan]="6">
         <nz-input-group nzSearch [nzAddOnBefore]="prefixButton">
-            <input [(ngModel)]="searchProjectName" type="text" nz-input placeholder="" (keyup.enter)="handleSearch()">
+            <input [(ngModel)]="searchProjectName" type="text" nz-input placeholder="Tên dự án">
         </nz-input-group>
         <ng-template #prefixButton>
             Tìm kiếm
         </ng-template>
     </div>
-    <button class="background-orange" nz-button (click)="goToAddProject()"><span nz-icon nzType="plus" nzTheme="outline"></span>Thêm dự án</button>
+    <button nz-button nz-col [nzSpan]="1" [nzOffset]="1" (click)="handleSearch()">Lọc</button>
+    <button nz-button nz-col [nzSpan]="2" [nzOffset]="1" (click)="handleClearSearch()">Bỏ lọc</button>
+    <button class="background-orange" nz-button nz-col [nzSpan]="3" [nzOffset]="10" (click)="goToAddProject()"><span nz-icon nzType="plus" nzTheme="outline"></span>Thêm dự án</button>
 </div>
 
 <div class="table-wrapper">
