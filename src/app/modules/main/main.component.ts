@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
     private dataService: DataService
   ) {
     let stringUser = sessionStorage.getItem("user");
-    let stringAdmin = localStorage.getItem("admin");
+    let stringAdmin = sessionStorage.getItem("admin");
     if (stringUser) {
       this.user = JSON.parse(stringUser);
       this.dataService.setRole(this.user?.role?.name);

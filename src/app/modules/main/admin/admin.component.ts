@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
     private dataService: DataService,
     private apiService: ApiService,
   ) {
-    let stringAdmin = localStorage.getItem("admin");
+    let stringAdmin = sessionStorage.getItem("admin");
     if (stringAdmin) {
       this.admin = JSON.parse(stringAdmin);
       this.dataService.setRole(this.admin.role);
@@ -42,11 +42,11 @@ export class AdminComponent implements OnInit {
 
   refreshToken(): void {
     console.log('Function executed after 50 minutes');
-    let token = localStorage.getItem("token");
+    let token = sessionStorage.getItem("token");
     if (token) {
       this.apiService.refreshToken({ token: token }).subscribe({
         next: (res: any) => {
-          localStorage.setItem("token", res.data)
+          sessionStorage.setItem("token", res.data)
           this.dataService.changeToken(res.data);
         }
       })
@@ -54,10 +54,10 @@ export class AdminComponent implements OnInit {
   }
 
   logout() {
-    let token = localStorage.getItem("token");
+    let token = sessionStorage.getItem("token");
     if (token) {
       this.apiService.logOutAdmin({ token: token })
-      localStorage.clear();
+      sessionStorage.clear();
       this.dataService.setRole("USER");
       this.dataService.setAdminInf({});
       this.router.navigateByUrl("/")

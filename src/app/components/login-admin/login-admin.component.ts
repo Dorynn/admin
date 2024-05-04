@@ -28,14 +28,14 @@ export class LoginAdminComponent {
 
     this.apiService.loginAdmin(request).subscribe({
       next: (res1: any) => {
-        localStorage.setItem("token", res1.data);
+        sessionStorage.setItem("token", res1.data);
         this.dataService.changeToken(res1.data);
         this.apiService.getAdminInf(res1.data).subscribe({
           next: (res: any) => {
             this.dataService.setAdminInf(res.data);
             this.dataService.setRole(res.data.role);
             this.router.navigateByUrl("/user");
-            localStorage.setItem("admin", JSON.stringify(res.data));
+            sessionStorage.setItem("admin", JSON.stringify(res.data));
           }
         })
       }

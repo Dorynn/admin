@@ -32,7 +32,7 @@ export class DataService {
 
 
   constructor() {
-    let token = localStorage.getItem("token")
+    let token = sessionStorage.getItem("token")
     if (token) {
       this.changeToken(token);
     }
