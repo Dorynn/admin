@@ -29,7 +29,7 @@ export class EditProjectComponent implements OnInit {
   bankHost!: string;
   bankNumber!: string;
   bankName!: string;
-  qrImage: NzUploadFile[]=[];
+  qrImage: NzUploadFile[] = [];
   investorPhoneNumber!: string;
   startDate!: Date;
   endDate!: Date;
@@ -45,7 +45,7 @@ export class EditProjectComponent implements OnInit {
   previewVisible2: boolean = false;
   isChangeThumbnail: boolean = false;
   isChangeQrImg: boolean = false;
-  loading:boolean = true;
+  loading: boolean = true;
   isExistThumbnail: boolean = false;
   isExistQrImg: boolean = false;
   typeList: any = [];
@@ -58,7 +58,7 @@ export class EditProjectComponent implements OnInit {
     private route: ActivatedRoute,
     private msg: NzMessageService,
     private dataService: DataService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.getProjectById();
@@ -97,7 +97,7 @@ export class EditProjectComponent implements OnInit {
         this.startDate = new Date(res.data.startDate);
         this.expiryDate = res.data.expiryDate;
         this.defaultDeposit = res.data.defaultDeposit;
-        if(res.data.thumbnail){
+        if (res.data.thumbnail) {
           this.isExistThumbnail = true;
           this.thumbnail.push({
             url: res.data.thumbnail,
@@ -106,7 +106,7 @@ export class EditProjectComponent implements OnInit {
             status: 'done'
           })
         }
-        if(res.data.qrImg){
+        if (res.data.qrImg) {
           this.isExistQrImg = true;
           this.qrImage.push({
             url: res.data.qrImg,
@@ -118,10 +118,10 @@ export class EditProjectComponent implements OnInit {
         this.getDistrictByProvince();
       }
     })
-  }  
+  }
 
-  editProject(){
-  this.dataService.changeStatusLoadingAdmin(true);
+  editProject() {
+    this.dataService.changeStatusLoadingAdmin(true);
     const formData = new FormData();
     let id: string = String(this.projectId);
     formData.append("id", id)
@@ -129,8 +129,8 @@ export class EditProjectComponent implements OnInit {
     formData.append("description", this.description)
     formData.append("status", this.status)
     formData.append("address", this.address)
-    formData.append("startDate", this.startDate.toISOString().substring(0,10))
-    formData.append("endDate", this.endDate.toISOString().substring(0,10))
+    formData.append("startDate", this.startDate.toISOString().substring(0, 10))
+    formData.append("endDate", this.endDate.toISOString().substring(0, 10))
     formData.append("bankNumber", this.bankNumber)
     formData.append("bankName", this.bankName)
     formData.append("hostBank", this.bankHost)
@@ -140,11 +140,11 @@ export class EditProjectComponent implements OnInit {
     formData.append("districtId", this.district)
     formData.append("defaultDeposit", this.defaultDeposit);
     formData.append("expiryDate", this.expiryDate)
-    
+
     if (this.isChangeThumbnail) {
       formData.append("thumbnail", this.thumbnail[0].originFileObj!)
     }
-    if (this.isChangeQrImg){
+    if (this.isChangeQrImg) {
       formData.append("qrImg", this.qrImage[0].originFileObj!)
     }
 
@@ -153,7 +153,7 @@ export class EditProjectComponent implements OnInit {
         this.msg.success("Cập nhật dự án thành công!");
         this.dataService.changeStatusLoadingAdmin(false);
       },
-      error: (err:any) => {
+      error: (err: any) => {
         this.msg.error("Cập nhật giao dịch thất bại")
         this.dataService.changeStatusLoadingAdmin(false);
       }
@@ -168,7 +168,7 @@ export class EditProjectComponent implements OnInit {
   // onFile2Selected(event: any) {
   //   this.qrImage = event.target.files?.[0]
   //   this.isChangeQrImg = true;
-    
+
   // }
 
   getProvinceList(): void {
@@ -209,28 +209,28 @@ export class EditProjectComponent implements OnInit {
         this.loading = false;
         break;
       case 'error':
-        if(this.thumbnail[0].status == 'error'){
+        if (this.thumbnail[0].status == 'error') {
           this.isChangeThumbnail = true;
         }
-        if(this.qrImage[0].status == 'error'){
+        if (this.qrImage[0].status == 'error') {
           this.isChangeQrImg = true;
         }
         this.loading = false;
         break;
       case 'removed':
-        if(this.thumbnail[0].status == 'removed'){
+        if (this.thumbnail[0].status == 'removed') {
           this.thumbnail = [];
         }
-        if(this.qrImage[0].status == 'removed'){
+        if (this.qrImage[0].status == 'removed') {
           this.qrImage = []
         }
         break;
     }
   }
 
-  onChangeType(value: string):void {
+  onChangeType(value: string): void {
     console.log('logo')
-    this.filterTypeOptions = this.typeList.filter((option: string) => option.toLowerCase().indexOf(value.toLowerCase())!== -1)
+    this.filterTypeOptions = this.typeList.filter((option: string) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1)
   }
 }
 

@@ -15,7 +15,7 @@ export class LandManagementComponent implements OnInit {
   total: number = 0;
   currentPage: number = 0;
   pageSize: number = 10;
-  allAreas: any =[];
+  allAreas: any = [];
   requestParams: any = {
     searchName: '',
     projectId: '',
@@ -26,7 +26,7 @@ export class LandManagementComponent implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getLandList({});
@@ -34,7 +34,7 @@ export class LandManagementComponent implements OnInit {
     this.getAreaList();
   }
 
-  getProjectList(){
+  getProjectList() {
     this.apiService.getAllProject().subscribe({
       next: (res: any) => {
         this.projectList = res.data
@@ -42,7 +42,7 @@ export class LandManagementComponent implements OnInit {
     })
   }
 
-  getAreaByProjectId(){
+  getAreaByProjectId() {
     this.apiService.getProjectById(this.requestParams.projectId).subscribe({
       next: (res: any) => {
         this.areaList = res.data.areas
@@ -50,7 +50,7 @@ export class LandManagementComponent implements OnInit {
     })
   }
 
-  getAreaList(){
+  getAreaList() {
     this.apiService.getAllArea().subscribe({
       next: (res: any) => {
         this.areaList = res.data
@@ -58,7 +58,7 @@ export class LandManagementComponent implements OnInit {
     })
   }
 
-  getLandList(request: any){
+  getLandList(request: any) {
     this.apiService.getLandList(request).subscribe({
       next: (res: any) => {
         this.landList = res.data;
@@ -73,15 +73,15 @@ export class LandManagementComponent implements OnInit {
 
   }
 
-  goToAddLand(){
+  goToAddLand() {
     this.router.navigateByUrl('/add-land')
   }
 
-  goToEditLand(id: string){
+  goToEditLand(id: string) {
     this.router.navigateByUrl(`/edit-land/${id}`)
   }
 
-  getAreaById(){
+  getAreaById() {
     this.apiService.getAreaById(this.requestParams.areaId).subscribe({
       next: (res: any) => {
         this.requestParams.projectId = res.data.projectId
@@ -89,34 +89,34 @@ export class LandManagementComponent implements OnInit {
     })
   }
 
-  handleChangePage(e:any){
+  handleChangePage(e: any) {
     let param = {
-      pageIndex: e-1,
+      pageIndex: e - 1,
       pageSize: 10
     }
     this.getLandList(param)
   }
 
 
-  searchByProject(){
+  searchByProject() {
     this.getAreaByProjectId();
   }
 
-  searchByArea(){
-    if(this.requestParams.areaId == null){
+  searchByArea() {
+    if (this.requestParams.areaId == null) {
       this.getLandList({})
     }
     this.getAreaById();
   }
 
-  handleFilter(){
+  handleFilter() {
     this.getLandList(this.requestParams)
   }
 
-  handleClearFilter(){
+  handleClearFilter() {
     this.requestParams.searchName = '';
-    this.requestParams.projectId= '';
-    this.requestParams.areaId ='';
+    this.requestParams.projectId = '';
+    this.requestParams.areaId = '';
     this.getLandList({});
   }
 }

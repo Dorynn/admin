@@ -1,4 +1,4 @@
-declare var google:any;
+declare var google: any;
 
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
@@ -9,29 +9,29 @@ import { DataService } from '../../services/data.service';
   styleUrl: './main.component.css'
 })
 export class MainComponent implements OnInit {
-  user!:any;
+  user!: any;
   role!: string;
   isSpinning: boolean = true;
   iSSpinningUser: boolean = false;
 
   constructor(
     private dataService: DataService
-  ){
+  ) {
     let stringUser = sessionStorage.getItem("user");
     let stringAdmin = localStorage.getItem("admin");
-    if(stringUser){
+    if (stringUser) {
       this.user = JSON.parse(stringUser);
       this.dataService.setRole(this.user?.role?.name);
     }
-    if(stringAdmin){
+    if (stringAdmin) {
       this.dataService.setRole(JSON.parse(stringAdmin).role)
     }
   }
 
-  ngOnInit(): void {    
-    this.dataService.isUser.subscribe((role: string)=> this.role = role)
-    this.dataService.isLoadingAdmin.subscribe(status=>this.isSpinning=status)
-    this.dataService.isLoadingUser.subscribe(status=> this.iSSpinningUser=status)
+  ngOnInit(): void {
+    this.dataService.isUser.subscribe((role: string) => this.role = role)
+    this.dataService.isLoadingAdmin.subscribe(status => this.isSpinning = status)
+    this.dataService.isLoadingUser.subscribe(status => this.iSSpinningUser = status)
   }
-  
+
 }

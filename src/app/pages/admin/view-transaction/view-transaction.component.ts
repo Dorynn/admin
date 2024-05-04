@@ -12,7 +12,7 @@ import { ApiService } from '../../../services/api.service';
 export class ViewTransactionComponent implements OnInit {
   transactionId: string | null = this.route.snapshot.paramMap.get('id');
   transactionInf: any = [];
-  status:string = '1';
+  status: string = '1';
 
   constructor(
     private router: Router,
@@ -41,10 +41,10 @@ export class ViewTransactionComponent implements OnInit {
     return date
   }
 
-  updateTransactionStatus(){
+  updateTransactionStatus() {
     let formData = new FormData();
     formData.append("id", String(this.transactionId));
-    formData.append("status",this.status);
+    formData.append("status", this.status);
     this.apiService.updateTransaction(formData).subscribe({
       next: (res: any) => {
         this.msg.success('Cập nhật giao dịch thành công!')
@@ -56,7 +56,7 @@ export class ViewTransactionComponent implements OnInit {
     })
   }
 
-  updateLandStatus(){
+  updateLandStatus() {
     let formData = new FormData();
     formData.append("id", this.transactionInf.land.id);
     formData.append("status", '3');

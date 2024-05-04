@@ -5,6 +5,7 @@
     border-right: none;
     text-align: center;
 }
+
 nz-select {
     width: 100%;
 }
@@ -12,7 +13,7 @@ nz-select {
 nz-table {
     margin-top: 25px;
     margin-bottom: 15px;
-    border: none!important;
+    border: none !important;
 }
 
 nz-pagination {

@@ -137,7 +137,7 @@ export class EditLandComponent {
           this.isExistLandImages = true;
           let images = res.data.images
           console.log(images);
-          images.map((item:any) => {
+          images.map((item: any) => {
             this.fileLandImage.push({
               url: item.url,
               uid: item.imageId,
@@ -147,12 +147,12 @@ export class EditLandComponent {
           })
         }
         console.log(this.fileLandImage);
-        
+
         if (!this.thumbnail) {
           this.thumbnail = [];
         }
 
-        if(!this.fileLandImage){
+        if (!this.fileLandImage) {
           this.fileLandImage = []
         }
         this.getAreaByProjectId();

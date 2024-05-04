@@ -11,15 +11,15 @@ import { DataService } from '../../../services/data.service';
 })
 export class AdminComponent implements OnInit {
   isCollapsed = false;
-  admin!:any;
+  admin!: any;
 
   constructor(
     private router: Router,
     private dataService: DataService,
     private apiService: ApiService,
-  ){
+  ) {
     let stringAdmin = localStorage.getItem("admin");
-    if(stringAdmin){
+    if (stringAdmin) {
       this.admin = JSON.parse(stringAdmin);
       this.dataService.setRole(this.admin.role);
       this.dataService.setAdminInf(this.admin);
@@ -27,24 +27,24 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
+
     this.scheduleFunctionExecution();
   }
 
   scheduleFunctionExecution(): void {
-    const delayInMilliseconds = 60*1000*40; 
+    const delayInMilliseconds = 60 * 1000 * 40;
     console.log('token in admin');
-    
+
     setInterval(() => {
-      this.refreshToken(); 
+      this.refreshToken();
     }, delayInMilliseconds);
   }
 
   refreshToken(): void {
     console.log('Function executed after 50 minutes');
     let token = localStorage.getItem("token");
-    if (token){
-      this.apiService.refreshToken({token: token}).subscribe({
+    if (token) {
+      this.apiService.refreshToken({ token: token }).subscribe({
         next: (res: any) => {
           localStorage.setItem("token", res.data)
           this.dataService.changeToken(res.data);
@@ -53,10 +53,10 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  logout(){
+  logout() {
     let token = localStorage.getItem("token");
-    if(token){
-      this.apiService.logOutAdmin({token: token})
+    if (token) {
+      this.apiService.logOutAdmin({ token: token })
       localStorage.clear();
       this.dataService.setRole("USER");
       this.dataService.setAdminInf({});

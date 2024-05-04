@@ -31,7 +31,7 @@ export class TransactionManagementComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.getTransactionList({})
   }
 
@@ -67,10 +67,10 @@ export class TransactionManagementComponent implements OnInit {
     this.getTransactionList(param)
   }
 
-  updateTransactionStatus(id: string, status: string){
+  updateTransactionStatus(id: string, status: string) {
     let formData = new FormData();
-    formData.append("id",id);
-    formData.append("status",status);
+    formData.append("id", id);
+    formData.append("status", status);
     this.apiService.updateTransaction(formData).subscribe({
       next: (res: any) => {
         this.msg.success('Cập nhật giao dịch thành công!')
@@ -82,7 +82,7 @@ export class TransactionManagementComponent implements OnInit {
     })
   }
 
-  updateLandStatus(id: string, status: string){
+  updateLandStatus(id: string, status: string) {
     let formData = new FormData();
     formData.append("id", id);
     formData.append("status", status);
@@ -100,15 +100,15 @@ export class TransactionManagementComponent implements OnInit {
         this.updateLandStatus(landId, landStatus);
         this.updateTransactionStatus(id, status);
       }
-        
+
     });
   }
 
-  handleFilter(){
+  handleFilter() {
     this.getTransactionList(this.searchParam)
   }
 
-  handleClearFilter(){
+  handleClearFilter() {
     this.getTransactionList({});
     this.searchParam.search = '';
     this.searchParam.searchName = '';

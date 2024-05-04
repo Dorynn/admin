@@ -52,24 +52,27 @@
                 </div>
                 <div nz-row class="item">
                     <div nz-col [nzSpan]="8">Trạng thái giao dịch:</div>
-                    <div nz-col [nzSpan]="16">{{transactionInf.status == '0'?'Chờ giao dịch':transactionInf.status=='1'? 'Giao dịch thành công': 'Giao dịch thất bại'}}</div>
+                    <div nz-col [nzSpan]="16">{{transactionInf.status == '0'?'Chờ giao dịch':transactionInf.status=='1'?
+                        'Giao dịch thành công': 'Giao dịch thất bại'}}</div>
                 </div>
             </div>
 
             @if (transactionInf.status == '0') {
-                <div nz-row class="update-status-group">
-                    <div nz-col [nzSpan]="7">
-                        <input [(ngModel)]="status" value="1" id="successTransaction" type="radio" name="transaction-status">
-                        <label for="successTransaction">Giao dịch thành công</label>
-                    </div>
-                    <div nz-col [nzSpan]="7">
-                        <input [(ngModel)]="status" value="2" id="failureTransaction" type="radio" name="transaction-status" style="margin-left: 15px">
-                        <label for="failureTransaction">Giao dịch thất bại</label>
-                    </div>
-                    <div nz-col [nzSpan]="6" [nzOffset]="4">
-                        <button nz-button (click)="showConfirm()">Cập nhật</button>
-                    </div>
+            <div nz-row class="update-status-group">
+                <div nz-col [nzSpan]="7">
+                    <input [(ngModel)]="status" value="1" id="successTransaction" type="radio"
+                        name="transaction-status">
+                    <label for="successTransaction">Giao dịch thành công</label>
                 </div>
+                <div nz-col [nzSpan]="7">
+                    <input [(ngModel)]="status" value="2" id="failureTransaction" type="radio" name="transaction-status"
+                        style="margin-left: 15px">
+                    <label for="failureTransaction">Giao dịch thất bại</label>
+                </div>
+                <div nz-col [nzSpan]="6" [nzOffset]="4">
+                    <button nz-button (click)="showConfirm()">Cập nhật</button>
+                </div>
+            </div>
             }
         </div>
     </div>

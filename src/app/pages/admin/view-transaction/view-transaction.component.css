@@ -12,7 +12,7 @@
 
 .view-transaction .content {
     padding: 15px;
-    
+
 }
 
 .thumbnail {
@@ -23,7 +23,7 @@
     margin-bottom: 10px;
 }
 
-.item [nz-col]:first-child{
+.item [nz-col]:first-child {
     font-weight: 600;
 }
 

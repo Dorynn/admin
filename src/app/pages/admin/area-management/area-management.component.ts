@@ -19,18 +19,18 @@ export class AreaManagementComponent implements OnInit {
     areaName: '',
     projectId: '',
   }
-  
+
   constructor(
     private apiService: ApiService,
     private router: Router
-  ){}
-  
-  ngOnInit():void {
+  ) { }
+
+  ngOnInit(): void {
     this.getAreaList({})
     this.getAllProject()
   }
 
-  getAreaList(request:any){
+  getAreaList(request: any) {
     this.loading = true;
     this.apiService.getAreaList(request).subscribe({
       next: (res: any) => {
@@ -47,7 +47,7 @@ export class AreaManagementComponent implements OnInit {
     })
   }
 
-  getAllProject(){
+  getAllProject() {
     this.apiService.getAllProject().subscribe({
       next: (res: any) => {
         this.projectList = res.data;
@@ -55,30 +55,30 @@ export class AreaManagementComponent implements OnInit {
     })
   }
 
-  goToAddArea(){
+  goToAddArea() {
     this.router.navigateByUrl('/add-area');
   }
 
-  goToEditArea(id: string){
+  goToEditArea(id: string) {
     this.router.navigateByUrl(`/edit-area/${id}`)
   }
 
-  handleChangePage(e: any){
-    this.getAreaList({pageIndex: e-1, pageSize: this.pageSize})
+  handleChangePage(e: any) {
+    this.getAreaList({ pageIndex: e - 1, pageSize: this.pageSize })
   }
 
-  handleSearch(){
-    this.getAreaList({areaName: this.searchAreaName})
+  handleSearch() {
+    this.getAreaList({ areaName: this.searchAreaName })
   }
 
-  handleSearchByProject(){
-    if(this.filterParams.projectId == undefined){
+  handleSearchByProject() {
+    if (this.filterParams.projectId == undefined) {
       this.filterParams.projectId = '';
     }
     this.getAreaList(this.filterParams);
   }
 
-  handleClearSearch(){
+  handleClearSearch() {
     this.searchAreaName = ''
     this.getAreaList({})
   }

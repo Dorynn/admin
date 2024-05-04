@@ -18,9 +18,9 @@ export class LoginAdminComponent {
     private dataService: DataService,
     private router: Router,
     private msg: NzMessageService
-  ){}
+  ) { }
 
-  handleLogin(){
+  handleLogin() {
     let request = {
       phone: this.phoneNumber,
       password: this.password
@@ -42,8 +42,8 @@ export class LoginAdminComponent {
     })
   }
 
-  goToRegister(){
+  goToRegister() {
     this.router.navigateByUrl("/register")
   }
-  
+
 }

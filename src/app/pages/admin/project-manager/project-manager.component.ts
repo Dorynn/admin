@@ -9,7 +9,7 @@ import { ApiService } from '../../../services/api.service';
 })
 export class ProjectManagerComponent implements OnInit {
   projectList: any = [];
-  total: number= 0;
+  total: number = 0;
   currentPage: number = 0;
   pageSize: number = 10;
   searchProjectName: string = ''
@@ -17,9 +17,9 @@ export class ProjectManagerComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.getProjectList({});
   }
 
@@ -37,7 +37,7 @@ export class ProjectManagerComponent implements OnInit {
   }
 
   handleChangePage(e: any) {
-    this.apiService.getProjectList({pageIndex: e-1, pageSize: this.pageSize}).subscribe({
+    this.apiService.getProjectList({ pageIndex: e - 1, pageSize: this.pageSize }).subscribe({
       next: (res: any) => {
         this.projectList = res.data
       }
@@ -52,11 +52,11 @@ export class ProjectManagerComponent implements OnInit {
     this.router.navigateByUrl(`/edit-project/${id}`)
   }
 
-  handleSearch(){
-    this.getProjectList({nameProject: this.searchProjectName})
+  handleSearch() {
+    this.getProjectList({ nameProject: this.searchProjectName })
   }
 
-  handleClearSearch(){
+  handleClearSearch() {
     this.searchProjectName = ''
     this.getProjectList({});
   }

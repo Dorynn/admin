@@ -10,16 +10,17 @@
         <input [(ngModel)]="request.email" type="email" nz-input placeholder="Email">
     </div>
     <div nz-row nzAlign="middle">
-        <input [(ngModel)]="request.password" [type]="passwordType" nz-input placeholder="Mật khẩu" nz-col [nzSpan]="22">
+        <input [(ngModel)]="request.password" [type]="passwordType" nz-input placeholder="Mật khẩu" nz-col
+            [nzSpan]="22">
         @if (passwordType == 'text') {
-            <span nz-icon nzType="eye" nzTheme="outline" (click)="changePasswordType('password')" nz-col [nzSpan]="1"></span>
+        <span nz-icon nzType="eye" nzTheme="outline" (click)="changePasswordType('password')" nz-col
+            [nzSpan]="1"></span>
         }@else {
-            <span nz-icon nzType="eye-invisible" nzTheme="outline" (click)="changePasswordType('text')" nz-col [nzSpan]="1"></span>
+        <span nz-icon nzType="eye-invisible" nzTheme="outline" (click)="changePasswordType('text')" nz-col
+            [nzSpan]="1"></span>
         }
     </div>
     <button nz-button class="background-brown" (click)="handleSignUp()">Register</button>
-    <div class="footer">Bạn đã có tài khoản? <span class="link-text" type="button" (click)="goToLogin()">Đăng nhập</span></div>
+    <div class="footer">Bạn đã có tài khoản? <span class="link-text" type="button" (click)="goToLogin()">Đăng
+            nhập</span></div>
 </div>
-
-
-

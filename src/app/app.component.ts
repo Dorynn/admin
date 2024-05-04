@@ -13,19 +13,19 @@ export class AppComponent {
     private router: Router,
     private route: ActivatedRoute,
     private dataService: DataService
-  ){
+  ) {
     dataService.isUser.subscribe(r => this.role = r)
-    this.router.events.subscribe((e:any)=>{
-      if(e instanceof NavigationEnd){
-        if (e.url == '/'){
-          if(this.role == 'ADMIN'){
+    this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        if (e.url == '/') {
+          if (this.role == 'ADMIN') {
             router.navigateByUrl("/user")
-          }else{
+          } else {
             router.navigateByUrl("/login")
           }
         }
-      } 
+      }
     })
   }
-  
+
 }

@@ -12,12 +12,14 @@
     <button nz-button nz-col [nzSpan]="1" [nzOffset]="1" (click)="handleSearch()">Lọc</button>
     <button nz-button nz-col [nzSpan]="2" [nzOffset]="1" (click)="handleClearSearch()">Bỏ lọc</button>
 
-    <button class="background-orange" nz-button nz-col [nzSpan]="3" [nzOffset]="10" (click)="goToAddArea()"><span nz-icon nzType="plus" nzTheme="outline"></span>Thêm phân khu</button>
+    <button class="background-orange" nz-button nz-col [nzSpan]="3" [nzOffset]="10" (click)="goToAddArea()"><span
+            nz-icon nzType="plus" nzTheme="outline"></span>Thêm phân khu</button>
 
 </div>
 
 <div class="table-wrapper">
-    <nz-table [nzData]="areaList" [nzLoading]="loading" nzSize="small" nzShowPagination="false" [nzScroll]="{y: '400px' }">
+    <nz-table [nzData]="areaList" [nzLoading]="loading" nzSize="small" nzShowPagination="false"
+        [nzScroll]="{y: '400px' }">
         <thead>
             <tr>
                 <th nzWidth="50px">STT</th>

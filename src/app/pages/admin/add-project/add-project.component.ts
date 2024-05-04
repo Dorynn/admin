@@ -130,9 +130,9 @@ export class AddProjectComponent implements OnInit {
     })
   }
 
-  onChangeType(value: string):void {
+  onChangeType(value: string): void {
     console.log('logo')
-    this.filterTypeOptions = this.typeList.filter((option: string) => option.toLowerCase().indexOf(value.toLowerCase())!== -1)
+    this.filterTypeOptions = this.typeList.filter((option: string) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1)
   }
 
   getProjects() {

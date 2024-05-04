@@ -11,7 +11,8 @@
     </div>
     <button nz-button nz-col [nzSpan]="1" [nzOffset]="1" (click)="handleSearch()">Lọc</button>
     <button nz-button nz-col [nzSpan]="2" [nzOffset]="1" (click)="handleClearSearch()">Bỏ lọc</button>
-    <button class="background-orange" nz-button nz-col [nzSpan]="3" [nzOffset]="10" (click)="goToAddProject()"><span nz-icon nzType="plus" nzTheme="outline"></span>Thêm dự án</button>
+    <button class="background-orange" nz-button nz-col [nzSpan]="3" [nzOffset]="10" (click)="goToAddProject()"><span
+            nz-icon nzType="plus" nzTheme="outline"></span>Thêm dự án</button>
 </div>
 
 <div class="table-wrapper">
@@ -35,11 +36,11 @@
                 <td>
                     <button nz-button class="background-blue" (click)="goToEditProject(item.id)">Cập nhật</button>
                     <button nz-button style="margin: 10px;" class="background-red">Xóa</button>
-                    <!-- <span nz-icon nzType="eye" nzTheme="outline"></span> -->
                 </td>
             </tr>
             }
         </tbody>
     </nz-table>
 </div>
-<nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="pageSize" (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>
+<nz-pagination [nzPageIndex]="currentPage+1" [nzTotal]="total" [nzPageSize]="pageSize"
+    (nzPageIndexChange)="handleChangePage($event)"></nz-pagination>

@@ -8,43 +8,43 @@ import { ApiService } from '../../../services/api.service';
 })
 export class UserListComponent implements OnInit {
   userList: any = [];
-  total:any=1;
+  total: any = 1;
   currentPage: any = 0;
-  pageSize: any=10;
+  pageSize: any = 10;
   search: string = '';
 
   constructor(
     private apiService: ApiService
-  ){}
-  
+  ) { }
+
   ngOnInit(): void {
-    this.getUserList({pageIndex: 0, pageSize: 10})
+    this.getUserList({ pageIndex: 0, pageSize: 10 })
   }
 
-  getUserList(params: any){
+  getUserList(params: any) {
     this.apiService.getUserList(params).subscribe({
       next: (res: any) => {
         this.userList = res.data;
         this.total = res.totalRecords;
-        this.currentPage= res.currentPage;
+        this.currentPage = res.currentPage;
         this.pageSize = res.currentSize;
       }
     })
   }
 
-  handleChangePage(event: any){
+  handleChangePage(event: any) {
     let params = {
-      pageIndex:event-1,
-      pageSize:this.pageSize
+      pageIndex: event - 1,
+      pageSize: this.pageSize
     }
     this.getUserList(params)
   }
 
-  handleSearch(){
-    this.getUserList({search: this.search});
+  handleSearch() {
+    this.getUserList({ search: this.search });
   }
 
-  handleClearSearch(){
+  handleClearSearch() {
     this.search = ''
     this.getUserList({})
   }

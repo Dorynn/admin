@@ -2,7 +2,7 @@
 
 <div nz-row [nzGutter]="32">
     <div nz-col [nzSpan]="6">
-        <input [(ngModel)]="name" type="text" nz-input placeholder="Tên dự án">
+        <input [(ngModel)]="name" type="text" nz-input placeholder="">
         <p>Tên dự án</p>
     </div>
     <div nz-col [nzSpan]="6">
@@ -15,7 +15,7 @@
         <p>Tiền đặt cọc mặc định</p>
     </div>
     <div nz-col [nzSpan]="6">
-        <nz-select [(ngModel)]="status">
+        <nz-select [(ngModel)]="status" nzPlaceHolder="">
             <nz-option [nzValue]="0" nzLabel="Sắp mở bán"></nz-option>
             <nz-option [nzValue]="1" nzLabel="Đang mở bán"></nz-option>
             <nz-option [nzValue]="2" nzLabel="Đã kết thúc"></nz-option>
@@ -61,11 +61,11 @@
         <p>Số điện thoại</p>
     </div>
     <div nz-col [nzSpan]="6">
-        <nz-date-picker [(ngModel)]="startDate"></nz-date-picker>
+        <nz-date-picker [(ngModel)]="startDate" nzPlaceHolder=""></nz-date-picker>
         <p>Ngày khởi công</p>
     </div>
     <div nz-col [nzSpan]="6">
-        <nz-date-picker [(ngModel)]="endDate"></nz-date-picker>
+        <nz-date-picker [(ngModel)]="endDate" nzPlaceHolder=""></nz-date-picker>
         <p>Ngày kết thúc</p>
     </div>
 </div>
@@ -87,7 +87,8 @@
 
 <div nz-row [nzGutter]="32">
     <div nz-col [nzSpan]="12">
-        <textarea [(ngModel)]="description" nz-input name="content" id="content" rows="4"  style="height: 104px;"></textarea>
+        <textarea [(ngModel)]="description" nz-input name="content" id="content" rows="4"
+            style="height: 104px;"></textarea>
         <p>Mô tả</p>
     </div>
     <div nz-col [nzSpan]="6">

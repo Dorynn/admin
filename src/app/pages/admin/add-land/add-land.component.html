@@ -33,18 +33,18 @@
 </div>
 
 @if (isMoreInf) {
-    <div nz-row [nzGutter]="32">
-        <div nz-col [nzSpan]="6">
-            <input [(ngModel)]="direction" nz-input type="text">
-            <p>Hướng {{projectType == '1' ? 'ban công': ''}}</p>
-        </div>
-        @if (projectType=='1') {
-            <div nz-col [nzSpan]="6">
-                <input [(ngModel)]="typeOfApartment" nz-input type="text">
-                <p>Loại căn hộ</p>
-            </div>
-        }
+<div nz-row [nzGutter]="32">
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="direction" nz-input type="text">
+        <p>Hướng {{projectType == '1' ? 'ban công': ''}}</p>
     </div>
+    @if (projectType=='1') {
+    <div nz-col [nzSpan]="6">
+        <input [(ngModel)]="typeOfApartment" nz-input type="text">
+        <p>Loại căn hộ</p>
+    </div>
+    }
+</div>
 }
 
 <div nz-row [nzGutter]="32">
@@ -92,18 +92,15 @@
     </div>
 
     <div nz-col [nzSpan]="14">
-        <nz-upload 
-        [nzPreview]="handlePreview" 
-        [nzShowUploadList]="true" nzListType="picture-card" 
-        [(nzFileList)]="fileLandImage"
-        (nzChange)="handleChange($event)"
-        >
-        <ng-container>
-            <span class="upload-icon" nzType="plus" nz-icon></span>
-            <div style="margin-top: 8px">Tải ảnh</div>
-        </ng-container>
+        <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
+            [(nzFileList)]="fileLandImage" (nzChange)="handleChange($event)">
+            <ng-container>
+                <span class="upload-icon" nzType="plus" nz-icon></span>
+                <div style="margin-top: 8px">Tải ảnh</div>
+            </ng-container>
         </nz-upload>
-        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+            (nzOnCancel)="previewVisible=false">
             <ng-template #modalContent>
                 <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
             </ng-template>
@@ -115,16 +112,13 @@
 
 <button class="background-orange" style="margin-right: 15px" nz-button (click)="handleAddLand()">Thêm khu đất</button>
 
-<nz-upload
-[(nzFileList)]="landFile"
-(nzChange)="importFile($event)"
->
-<button nz-button>
-  <span nz-icon nzType="upload"></span>
-  Import file
-</button>
+<nz-upload [(nzFileList)]="landFile" (nzChange)="importFile($event)">
+    <button nz-button>
+        <span nz-icon nzType="upload"></span>
+        Import file
+    </button>
 </nz-upload>
 
 @if (isImportFile) {
-    <button nz-button (click)="handleUploadLandFile()" style="margin-top: 15px">Tải lên</button>
+<button nz-button (click)="handleUploadLandFile()" style="margin-top: 15px">Tải lên</button>
 }

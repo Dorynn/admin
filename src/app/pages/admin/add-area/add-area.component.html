@@ -11,7 +11,7 @@
     <div nz-col [nzSpan]="12">
         <nz-select [(ngModel)]="projectId" nzShowSearch>
             @for (item of projectList; track $index) {
-                <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
             }
         </nz-select>
         <p>Dự án</p>
@@ -19,5 +19,3 @@
 </div>
 
 <button nz-button class="background-orange" (click)="handleAddArea()">Thêm phân khu</button>
-
-

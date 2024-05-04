@@ -143,9 +143,10 @@ export class AddLandComponent implements OnInit {
     formData.append("direction", this.direction)
     this.apiService.createLand(formData).subscribe({
       next: (res: any) => {
-        for(let i = 0; i < fileLength; i++){
+        for (let i = 0; i < fileLength; i++) {
           this.importMultipleImage(res.data, this.landImage[i]);
         }
+        this.msg.success('Thêm mới khu đất thành công!')
         console.log('oke');
 
       },
@@ -185,7 +186,6 @@ export class AddLandComponent implements OnInit {
     formData.append("files", landImage)
     this.apiService.importMultiImage(formData).subscribe({
       next: (res: any) => {
-        this.msg.success('Thêm mới khu đất thành công!')
         this.name = '';
         this.description = '';
         this.thumbnail = [];

@@ -10,7 +10,7 @@ import { DataService } from '../../services/data.service';
   styleUrl: './register-admin.component.css'
 })
 export class RegisterAdminComponent {
-  request:any= {
+  request: any = {
     name: '',
     phone: '',
     email: '',
@@ -24,9 +24,9 @@ export class RegisterAdminComponent {
     private dataService: DataService,
     private msg: NzMessageService,
     private router: Router
-  ){}
-  
-  handleSignUp(){
+  ) { }
+
+  handleSignUp() {
     // let request = {
     //   name: "Đỗ Thị Linh",
     //   phone: "0962027042",
@@ -42,11 +42,11 @@ export class RegisterAdminComponent {
     })
   }
 
-  goToLogin(){
+  goToLogin() {
     this.router.navigateByUrl("/login")
   }
 
-  changePasswordType(type: string){
+  changePasswordType(type: string) {
     this.passwordType = type
   }
 }

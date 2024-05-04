@@ -83,7 +83,7 @@
             }
         </nz-upload>
         }
-        
+
         <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
             (nzOnCancel)="previewVisible=false">
             <ng-template #modalContent>
@@ -95,21 +95,18 @@
 
     <div nz-col [nzSpan]="14">
         @if(isExistLandImages){
-            <nz-upload 
-            [nzPreview]="handlePreview" 
-            [nzShowUploadList]="true" nzListType="picture-card" 
-            [(nzFileList)]="fileLandImage"
-            (nzChange)="handleChange($event)"
-            >
-            @if(!previewImage){                
-                <ng-container>
-                    <span class="upload-icon" nzType="plus" nz-icon></span>
-                    <div style="margin-top: 8px">Tải ảnh</div>
-                </ng-container>
+        <nz-upload [nzPreview]="handlePreview" [nzShowUploadList]="true" nzListType="picture-card"
+            [(nzFileList)]="fileLandImage" (nzChange)="handleChange($event)">
+            @if(!previewImage){
+            <ng-container>
+                <span class="upload-icon" nzType="plus" nz-icon></span>
+                <div style="margin-top: 8px">Tải ảnh</div>
+            </ng-container>
             }
-            </nz-upload>
+        </nz-upload>
         }
-        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
+            (nzOnCancel)="previewVisible=false">
             <ng-template #modalContent>
                 <img [src]="previewImage" alt="" [ngStyle]="{ width: '100%'}">
             </ng-template>

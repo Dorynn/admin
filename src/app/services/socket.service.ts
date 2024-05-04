@@ -8,11 +8,11 @@ import * as Stomp from 'stompjs';
 })
 export class SocketService {
 
-  constructor(  ) { }
-  
-  connect(){
+  constructor() { }
+
+  connect() {
     let socket = new SockJS.default('http://localhost:8686/ws');
-    let stompClient= Stomp.over(socket);
+    let stompClient = Stomp.over(socket);
     return stompClient;
   }
 
