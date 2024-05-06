@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getAllProject(): Observable<any> {
-    return this.http.get(`${baseUrl}/projects/allProjects`)
+    return this.http.get(`${baseUrl}/projects/all-projects`)
   }
 
   addProject(request: any): Observable<any> {
@@ -50,19 +50,19 @@ export class ApiService {
   }
 
   getProvincesHaveProject(): Observable<any> {
-    return this.http.get(`${baseUrl}/provinces/withProject`);
+    return this.http.get(`${baseUrl}/provinces/with-project`);
   }
 
   getDistrictHaveProjectByProvinceId(provinceId: any): Observable<any> {
-    return this.http.get(`${baseUrl}/provinces/${provinceId}/allDistrictWithProject`)
+    return this.http.get(`${baseUrl}/provinces/${provinceId}/allDistrict-with-project`)
   }
 
   getAllDistrictHaveProject(): Observable<any> {
-    return this.http.get(`${baseUrl}/districts/withProject`)
+    return this.http.get(`${baseUrl}/districts/with-project`)
   }
 
   getProvinceByDistrictId(districId: any): Observable<any> {
-    return this.http.get(`${baseUrl}/districts/${districId}/getProvinceBy`)
+    return this.http.get(`${baseUrl}/districts/${districId}/get-province`)
   }
 
   createProject(request: any): Observable<any> {
@@ -102,7 +102,7 @@ export class ApiService {
   }
 
   updateLandStatus(request: any): Observable<any> {
-    return this.http.put(`${baseUrl}/lands/temporarilyLockOrUnLock`, request)
+    return this.http.put(`${baseUrl}/lands/temporarily-lock-or-unlock`, request)
   }
 
   getTransactionList(params: any): Observable<any> {
@@ -110,7 +110,7 @@ export class ApiService {
   }
 
   updateTransaction(request: any): Observable<any> {
-    return this.http.put(`${baseUrl}/transactions/confirmTransactionSuccessOrFail`, request, { headers: { 'Authorization': `Bearer ${this.token}` } });
+    return this.http.put(`${baseUrl}/transactions/confirm-transaction-success-or-fail`, request, { headers: { 'Authorization': `Bearer ${this.token}` } });
   }
 
   getTransactionById(id: string | null): Observable<any> {
@@ -118,7 +118,7 @@ export class ApiService {
   }
 
   getUserList(params: any): Observable<any> {
-    return this.http.get(`${baseUrl}/users`, { params: params })
+    return this.http.get(`${baseUrl}/users`, { headers: { 'Authorization': `Bearer ${this.token}` }, params: params })
   }
 
   createTransaction(request: any): Observable<any> {
@@ -126,11 +126,11 @@ export class ApiService {
   }
 
   getTransactionOfUser(params: any): Observable<any> {
-    return this.http.get(`${baseUrl}/transactions/withUser`, { params: params })
+    return this.http.get(`${baseUrl}/transactions/with-user`, { params: params })
   }
 
   createUser(request: any): Observable<any> {
-    return this.http.post(`${baseUrl}/users/login_user`, request)
+    return this.http.post(`${baseUrl}/users/login-user`, request)
   }
 
   getOtp(request: any): Observable<any> {
@@ -142,27 +142,27 @@ export class ApiService {
   }
 
   getLandByAreaId(params: any): Observable<any> {
-    return this.http.get(`${baseUrl}/lands/allLandByAreaId`, { params: params })
+    return this.http.get(`${baseUrl}/lands/all-land-by-area-id`, { params: params })
   }
 
   signUpAdmin(request: any): Observable<any> {
-    return this.http.post(`${baseUrlAdmin}/auth/sign_up_admin`, request)
+    return this.http.post(`${baseUrlAdmin}/auth/sign-up-admin`, request)
   }
 
   loginAdmin(request: any): Observable<any> {
-    return this.http.post(`${baseUrlAdmin}/auth/sign_in_admin`, request);
+    return this.http.post(`${baseUrlAdmin}/auth/sign-in-admin`, request);
   }
 
   logOutAdmin(request: any): Observable<any> {
-    return this.http.post(`${baseUrlAdmin}/auth/logout_admin`, request);
+    return this.http.post(`${baseUrlAdmin}/auth/logout-admin`, request);
   }
 
   refreshToken(request: any): Observable<any> {
-    return this.http.post(`${baseUrlAdmin}/auth/refresh_token`, request);
+    return this.http.post(`${baseUrlAdmin}/auth/refresh-token`, request);
   }
 
   getAdminInf(token: string): Observable<any> {
-    return this.http.get(`${baseUrlAdmin}/auth/my_information`, { headers: { 'Authorization': `Bearer ${token}` } })
+    return this.http.get(`${baseUrlAdmin}/auth/my-information`, { headers: { 'Authorization': `Bearer ${this.token}` } })
   }
 
   deleteTransaction(id: string): Observable<any> {
@@ -174,14 +174,14 @@ export class ApiService {
   }
 
   importFile(formData: any): Observable<any> {
-    return this.http.post(`${baseUrl}/lands/create_multi_lands_from_excel_file`, formData)
+    return this.http.post(`${baseUrl}/lands/create-multi-lands-from-excel-file`, formData,{ headers: { 'Authorization': `Bearer ${this.token}`}})
   }
 
   importMultiImage(formData: any): Observable<any> {
-    return this.http.post(`${baseUrl}/images/import_multi_image_for_land`, formData)
+    return this.http.post(`${baseUrl}/images/import-multi-image-for-land`,formData,{ headers: { 'Authorization': `Bearer ${this.token}`}})
   }
 
   getAllArea(): Observable<any> {
-    return this.http.get(`${baseUrl}/areas/noPagination`)
+    return this.http.get(`${baseUrl}/areas/no-pagination`)
   }
 }

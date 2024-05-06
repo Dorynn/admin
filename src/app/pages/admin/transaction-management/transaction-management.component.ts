@@ -111,7 +111,7 @@ export class TransactionManagementComponent implements OnInit {
   handleClearFilter() {
     this.getTransactionList({});
     this.searchParam.search = '';
-    this.searchParam.searchName = '';
+    this.searchParam.searchCode = '';
     this.searchParam.status = '';
   }
 }
