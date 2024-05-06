@@ -175,7 +175,8 @@ export class AddLandComponent implements OnInit {
     this.apiService.importFile(formData).subscribe({
       next: (res: any) => {
         this.msg.success("Import file success");
-        this.isImportFile = false
+        this.isImportFile = false;
+        this.landFile = [];
       }
     })
   }
